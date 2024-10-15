@@ -1,0 +1,54 @@
+@import '@styles/global.scss';
+@import '@styles/mixins.scss';
+
+.container {
+  display: inline-flex;
+  align-items: center;
+}
+
+.btn {
+  padding: 0;
+  border: none;
+  outline: none;
+  background-color: transparent;
+  color: $color4;
+}
+
+.dropdownContainer {
+  position: absolute;
+  transform: translateY(55%);
+
+  z-index: 1000;
+
+  height: auto;
+
+  word-break: break-all;
+  border-radius: $dropdown-border-radius;
+  padding: 20px;
+  background-color: $color1;
+  opacity: 1;
+  @include shadow();
+
+  transition: $transition;
+
+  &.hidden {
+    width: 0;
+    height: 0;
+    padding: 0;
+    opacity: 0;
+    color: transparent;
+    overflow: hidden;
+  }
+
+  &.left {
+    right: 100%;
+  }
+}
+
+.content {
+  opacity: 1;
+
+  &.hiddenContent {
+    opacity: 0;
+  }
+}

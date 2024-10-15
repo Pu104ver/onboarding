@@ -1,0 +1,125 @@
+@import '@styles/global.scss';
+
+.aside {
+  position: sticky;
+  top: 12px;
+  bottom: 0;
+  left: 0;
+
+  width: 25%;
+  min-width: 260px;
+  max-width: 400px;
+  // Такое значение нужно, чтобы был небольшой отступ сверху и снизу, чтобы было вровень с стрелочкой на странице отдельного сотрудника (К списку сотрудников)
+  height: calc(100vh - 12px - 10px);
+  margin: 12px 15px 0 0;
+  padding: 0;
+
+  background-color: $color2;
+  border-radius: 20px;
+  overflow: auto;
+
+  transition: $transition;
+}
+
+.aside::-webkit-scrollbar {
+  width: 3px;
+}
+
+.aside::-webkit-scrollbar-thumb {
+  background: $color4;
+  border-radius: 20px;
+}
+
+.aside::-webkit-scrollbar-track {
+  background: $transparent;
+}
+
+.asideHidden {
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 55px;
+  min-width: 0;
+  height: 55px;
+  margin-left: 0;
+  padding: 15px;
+
+  border-radius: 50%;
+}
+
+.asideHidden ul {
+  display: none;
+}
+
+.container {
+  position: relative;
+}
+
+.sidebarHeader {
+  position: sticky;
+  top: 0;
+  left: 0;
+  right: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  padding: 15px 20px 0 15px;
+  background-color: $color2;
+  transition: $transition;
+  z-index: 1;
+}
+
+.sidebarHeaderHidden {
+  justify-content: center;
+  padding: 0;
+}
+
+.logo {
+  width: 50%;
+}
+
+.logoHidden {
+  display: none;
+}
+
+.collapseArrow {
+  transition: $transition;
+}
+
+.arrowHidden {
+  transform: scale(-1, -1);
+}
+
+.collapseBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  margin: 0 0 0 auto;
+
+  background-color: transparent;
+  border: none;
+  outline: none;
+
+  transition: $transition;
+}
+
+.hiddenContainer {
+  display: none;
+}
+
+.list {
+  overflow: hidden;
+}
+
+.hr {
+  width: 90%;
+  height: 1px;
+  margin: 20px auto 0 auto;
+  background-color: $color11;
+}

@@ -1,0 +1,21 @@
+@import '@styles/global.scss';
+@import '@styles/mixins.scss';
+
+.select {
+  // width: 75%;
+  transition: $transition;
+  svg {
+    cursor: pointer;
+  }
+}
+
+.select > div {
+  min-height: 50px;
+  cursor: text;
+  transition: $transition;
+  @include border($color3);
+}
+
+.select > div:hover {
+  @include border();
+}

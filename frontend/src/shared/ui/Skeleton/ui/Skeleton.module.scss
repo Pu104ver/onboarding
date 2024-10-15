@@ -1,0 +1,46 @@
+@import '@styles/global.scss';
+
+.wrapper {
+  display: inline-block;
+
+  height: 50px;
+  padding: $button-padding;
+
+  line-height: 100%;
+
+  background-color: $color13;
+  background-size: 1000px 1000px;
+  border-radius: $border-radius;
+
+  &.block {
+    display: block;
+    width: 100%;
+  }
+
+  &.active {
+    background-color: $color1;
+    background-image: linear-gradient(
+        100deg,
+        $color12 20%,
+        $color13 50%,
+        $color12 60%
+    );
+    animation: placeholderShimmer 1.5s linear infinite forwards;
+  }
+
+  &.circle {
+    width: 50px;
+    height: 50px;
+    padding: 25px;
+    border-radius: 50%;
+  }
+}
+
+@keyframes placeholderShimmer {
+  0% {
+    background-position: -500px 0;
+  }
+  100% {
+    background-position: 500px 0;
+  }
+}

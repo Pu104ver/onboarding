@@ -1,0 +1,28 @@
+@import '@styles/global.scss';
+@import '@styles/mixins.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  // 100% от высоты экрана минус padding сверху и снизу, чтобы не было скролла, но при этом все было по центру
+  min-height: calc(100vh - 32px - 32px);
+  min-width: 100%;
+}
+
+.auth {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 20px;
+
+  width: 30%;
+  min-width: 300px;
+  max-width: 400px;
+  min-height: 315px;
+  padding: 20px;
+
+  border-radius: 15px;
+  @include shadow();
+}
+

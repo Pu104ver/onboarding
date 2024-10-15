@@ -1,0 +1,31 @@
+@import '@styles/global.scss';
+
+.skipBtnContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+}
+
+.employeesTableWithPools {
+  background-color: $color2;
+  border-radius: 6px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h3 {
+    color: $color9;
+  }
+
+  table {
+    margin: 20px auto;
+    width: 100%;
+    border-radius: 6px;
+    th,
+    tr {
+      width: 100%;
+    }
+  }
+}

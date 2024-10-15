@@ -1,0 +1,54 @@
+@import '@styles/global.scss';
+
+.tables {
+  padding: 30px 20px;
+  background-color: $color2;
+  border-radius: 6px;
+  display: flex;
+  flex-direction: column;
+}
+.curatorPage {
+  display: flex;
+  flex-direction: column;
+  gap: 30px;
+
+  max-width: 100%;
+  overflow: auto;
+
+  h4 {
+    color: $color9;
+  }
+}
+
+.link {
+  cursor: pointer;
+  color: $color4;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  font-size: 16px;
+  margin-right: 30px;
+}
+
+.curatorBody {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+  position: relative;
+}
+
+.tableHeader {
+  text-align: center;
+  color: $color4;
+  
+  margin-bottom: 10px;
+
+  h3 {
+    flex: 1;
+    text-align: center;
+    cursor: pointer;
+
+    padding: 0 10px;
+  }
+}

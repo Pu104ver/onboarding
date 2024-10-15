@@ -1,0 +1,32 @@
+@import '@styles/global.scss';
+@import '@styles/mixins.scss';
+
+.LoginForm {
+  display: inline-flex;
+  flex-direction: column;
+  gap: 20px;
+
+  width: 30%;
+  min-width: 300px;
+  max-width: 400px;
+  padding: 20px;
+
+  border-radius: 15px;
+  @include shadow();
+
+  h2 {
+    @include font(24px);
+  }
+
+  p {
+    @include font(16px);
+
+    color: $color4;
+  }
+}
+
+.errorMsg {
+  margin-top: -15px;
+  margin-left: 10px;
+  color: $color5 !important;
+}

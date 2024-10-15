@@ -1,0 +1,14 @@
+@import '@styles/global.scss';
+.comment {
+  background-color: $color2;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  border-radius: 10px;
+  .commentHeader {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+}
