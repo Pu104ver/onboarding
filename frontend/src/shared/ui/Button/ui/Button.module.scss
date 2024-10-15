@@ -1,0 +1,117 @@
+@import '@styles/global.scss';
+@import '@styles/mixins.scss';
+
+.container {
+  display: flex;
+  flex-wrap: nowrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 5px;
+
+  // Нужно для того, чтобы не резалась иконка снизу
+  margin-bottom: 1px;
+}
+
+.button {
+  @include font(16px, $color4, 500);
+
+  display: inline-flex;
+  gap: 15px;
+  align-items: center;
+  justify-content: center;
+
+  padding: $button-padding;
+
+  background-color: $color2;
+  border: solid 1px $color3;
+
+  border-radius: $border-radius;
+
+  transition: $transition;
+
+  -webkit-user-select: text;
+  -moz-user-select: text;
+  -ms-user-select: text;
+  user-select: text;
+
+  &:hover {
+    transform: scale(1.01);
+    filter: drop-shadow(0 0 5px $color3);
+  }
+
+  &:active {
+    transform: scale(0.99);
+  }
+
+  &.primary {
+    @include border($transparent);
+    @include font(16px, $color1, 500);
+
+    background-color: $color4;
+
+    &.danger {
+      background-color: $color5;
+      color: $color1;
+    }
+  }
+
+  &.text {
+    @include border($transparent);
+
+    background-color: $color1;
+    
+    &.danger {
+      color: $color5;
+    }
+  }
+
+  &.copyable {
+    @include border($transparent);
+    cursor: text;
+    padding: 0;
+    background-color: transparent;
+    flex: none;
+    justify-content: start;
+
+    &.copyable:hover {
+      transform: none;
+      filter: none;
+    }
+  }
+
+  &.pressed {
+    @include shadow(0px 4px 20px 0px, $shadowColor, inset);
+  }
+
+  &.loading {
+    opacity: 0.7;
+    cursor: not-allowed;
+  }
+
+  &.danger {
+      color: $color5;
+  }
+}
+
+.primaryLoader {
+  @include border($color1, top, 2px, solid, !important);
+}
+
+.copyBtn {
+  border: none;
+  padding: 0;
+  outline: none;
+  background-color: transparent;
+
+  &:hover > .copyIcon {
+    fill: $input-hover-color;
+  }
+
+  .copyIcon {
+    width: 20px;
+    height: 20px;
+    margin-left: auto;
+    fill: $color4;
+    transition: $transition;
+  }
+}

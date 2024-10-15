@@ -1,0 +1,18 @@
+@import '@styles/global.scss';
+.event {
+  border-radius: 10px;
+  background-color: $color2;
+  padding: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  .eventBody {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    width: 50%;
+  }
+  .eventStatus {
+    width: 50%;
+  }
+}

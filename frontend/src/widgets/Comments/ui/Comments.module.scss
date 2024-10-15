@@ -1,0 +1,25 @@
+@import '@styles/global.scss';
+.comments {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+  .newComment {
+    background-color: $color2;
+    padding: 14px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    border-radius: 10px;
+  }
+}
+//TODO .comments:after {
+//   content: '';
+//   background-color: $color2;
+//   position: absolute;
+//   width: 2px;
+//   height: 100%;
+//   top: 0;
+//   left: 50%;
+//   display: block;
+// }

@@ -1,0 +1,19 @@
+@import '@styles/global.scss';
+
+.filterContainer {
+  display: flex;
+  justify-content: start;
+  gap: 12px;
+  flex-wrap: wrap;
+  transition: $transition;
+
+  & > div {
+    width: 250px;
+    margin: 0;
+  }
+
+  &.hidden {
+    height: 0;
+    overflow: hidden;
+  }
+}

@@ -1,0 +1,3 @@
+export const PAGES_LIMIT = 30;
+export const DISTANCE_BETWEEN_TABLE_AND_WINDOW = 32;
+export const DISTANCE_TO_TABLE_BOTTOM_TO_FETCH = 50;

@@ -1,0 +1,27 @@
+@import '@styles/global.scss';
+
+.container {
+    display: inline-flex;
+    align-items: center;
+    gap: 5px;
+}
+
+.input {
+    height: 14px;
+    width: 14px;
+
+    transition: $transition;
+}
+
+.input:hover {
+    color: $input-hover-color;
+}
+
+.btn {
+    border: none;
+    outline: none;
+    background-color: $transparent;
+    flex: 1;
+    text-align: start;
+    cursor: pointer;
+}

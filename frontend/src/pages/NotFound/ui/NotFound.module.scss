@@ -1,0 +1,43 @@
+@import '@styles/mixins.scss';
+
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+    height: 100vh;
+}
+
+.imgWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 50%;
+    max-width: 300px;
+    margin: 0 auto;
+
+    object-fit: cover;
+}
+
+.icon {
+    width: 100%;
+    height: auto;
+}
+
+.imgNotFound {
+    width: 100%;
+    height: auto;
+    text-align: center;
+}
+
+.title {
+
+    @include font(18px, $black, 500);
+
+    width: 100%;
+    margin-bottom: 20px;
+    text-align: center;
+}

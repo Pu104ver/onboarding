@@ -1,0 +1,44 @@
+@import '@styles/global.scss';
+
+@mixin font($size: 16px, $color: $black, $weight: 400, $family: Inter) {
+  font-family: $family;
+  font-size: $size;
+  font-weight: $weight;
+  color: $color;
+}
+
+@mixin border($color: $input-hover-color, $placement: '', $size: 1px, $type: solid, $important: '') {
+  @if $placement != '' {
+    @if $important != '' {
+      border-#{$placement}: $size $type $color !important;
+    }
+
+    @if $important == '' {
+      border-#{$placement}: $size $type $color;
+    }
+  }
+  
+  @if $placement == '' {
+    @if $important != '' {
+      border: $size $type $color !important;
+    }
+
+    @if $important == '' {
+      border: $size $type $color;
+    }
+  }
+}
+
+@mixin shadow($position: 0px 4px 20px 0px, $color: $shadowColor, $placement: '') {
+  @if $placement == '' {
+    -webkit-box-shadow: $position $color;
+    -moz-box-shadow: $position $color;
+    box-shadow: $position $color;
+  }
+
+  @if $placement != '' {
+    -webkit-box-shadow: $position $color $placement;
+    -moz-box-shadow: $position $color $placement;
+    box-shadow: $position $color $placement;
+  }
+}

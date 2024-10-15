@@ -1,0 +1,27 @@
+.wrapper {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 10px;
+    align-items: center;
+    justify-content: center;
+
+    width: 100%;
+
+  // 100% от высоты экрана минус padding сверху и снизу, чтобы не было скролла, но при этом все было по центру
+    min-height: calc(100vh - 32px - 32px);
+}
+
+.img {
+    width: 300px;
+    height: 300px;
+}
+
+.desc {
+    min-width: 330px;
+    margin-top: 10px;
+}
+
+.link {
+    min-width: 270px;
+}

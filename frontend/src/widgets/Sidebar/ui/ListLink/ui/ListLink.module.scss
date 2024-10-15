@@ -1,0 +1,22 @@
+@import '@styles/global.scss';
+
+.list {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    gap: 5px;
+}
+
+.linkItem {
+    width: 100%;
+    padding: 5px 0;
+    transition: $transition;
+}
+
+.linkItem > a {
+    color: $black;
+}
+
+.currentLink {
+    box-shadow: $sidebarLinkShadow;
+}

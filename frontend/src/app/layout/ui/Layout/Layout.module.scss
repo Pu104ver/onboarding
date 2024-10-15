@@ -1,0 +1,14 @@
+.wrapper {
+  display: flex;
+  justify-content: space-between;
+}
+
+.main {
+  overflow: auto;
+  display: flex;
+  flex-direction: column;
+
+  width: 100%;
+  max-width: 1920px;
+  margin: 0 auto;
+}

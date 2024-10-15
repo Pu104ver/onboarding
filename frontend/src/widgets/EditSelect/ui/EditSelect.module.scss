@@ -1,0 +1,35 @@
+.Edit {
+  width: 90%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  height: 20px;
+
+  .icon {
+    opacity: 0;
+    cursor: pointer;
+  }
+  &:hover {
+    .icon {
+      opacity: 1;
+    }
+  }
+}
+
+.editTools {
+  min-width: 250px;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  gap: 15px;
+  svg {
+    width: 30px;
+    height: 30px;
+  }
+}
+
+.editTools > div {
+  flex: 1;
+}

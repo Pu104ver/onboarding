@@ -1,0 +1,28 @@
+@import '@styles/global.scss';
+
+.status {
+  display: flex;
+  gap: 5px;
+  align-items: center;
+  justify-content: end;
+  width: 100%;
+  .completed {
+    color: $color6;
+  }
+  .not_started {
+    color: $color5;
+  }
+  .in_frozen {
+    color: $color7;
+  }
+  .noAnswer {
+    color: $color9;
+  }
+  .in_progress {
+    color: $color8;
+  }
+}
+
+.link {
+  color: $color4;
+}

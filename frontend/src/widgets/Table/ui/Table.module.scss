@@ -1,0 +1,175 @@
+@import '@styles/global.scss';
+@import '@styles/mixins.scss';
+
+.table {
+  position: relative;
+  overflow-x: auto;
+  overflow-y: scroll;
+
+  min-width: 100%;
+  width: 100%;
+  max-width: 100%;
+
+  display: grid;
+  
+  border-collapse: collapse;
+  border-spacing: 0;
+  white-space: nowrap;
+  margin: 0 auto;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color3;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $transparent;
+  }
+
+  &.emptyTable {
+    min-height: 300px;
+  }
+
+  thead,
+  tbody,
+  tr {
+    display: contents;
+  }
+
+  tbody {
+    height: auto;
+    background-color: $color1;
+  }
+
+  th,
+  td {
+    padding: 10px 32px;
+    text-align: left;
+
+    height: 50px;
+
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    background-color: $color1;
+    overflow: hidden;
+  }
+  
+  th {
+    position: sticky;
+    top: 0;
+  }
+
+  td {
+    @include border($color3, bottom);
+  }
+
+  td:has(a) {
+    color: $color4;
+  }
+}
+
+.titleBlock {
+  position: relative;
+  align-items: center;
+
+  .titleContainer {
+    display: flex;
+    flex-wrap: nowrap;
+    gap: 8px;
+    align-items: center;
+
+    .upDownBtn {
+      padding: 0;
+    }
+    
+    &.left {
+      justify-content: start;
+    }
+
+    &.center {
+      justify-content: center;
+    }
+
+    &.right {
+      text-align: right;
+    }
+  }
+}
+
+.bordered {
+  th,
+  td {
+    @include border($color3, left);
+  }
+
+  thead th {
+    @include border($color3, top);
+    @include border($color3, bottom);
+  }
+
+  thead th:last-of-type,
+  tbody td:last-of-type {
+    @include border($color3, right);
+  }
+}
+
+.tableSkeleton,
+.tableEmpty {
+  width: 100%;
+  height: 20px;
+
+  & > td {
+    width: 100%;
+    padding: 0;
+    overflow: hidden;
+    display: contents;
+
+    height: 50px;
+  }
+
+  & > td:first-of-type div {
+    border-radius: 4px 0 0 4px;
+  }
+
+  & > td:last-of-type div {
+    border-radius: 0 4px 4px 0;
+  }
+
+  & div {
+    border-radius: 0;
+    margin: 5px 0;
+  }
+}
+
+.emptyRow {
+  position: absolute;
+  width: 100%;
+  // Высота равна высоте всей таблице - высота thead. Это делается, чтобы высота заглушки была на весь блок, но при этом не появлялся скролл
+  height: calc(100% - 52px);
+  // height: 100%;
+  background-color: $color1;
+
+  &::before {
+    display: block;
+    position: absolute;
+    top: 20%;
+    left: 50%;
+    transform: translateX(-50%);
+
+    content: url('http://static.skaip.org/img/emoticons/180x180/f6fcff/penguin.gif');
+
+  }
+
+  &::after {
+    position: absolute;
+    bottom: 15%;
+    left: 50%;
+    transform: translateX(-50%);
+    content: 'Нет данных...';
+  }
+}

@@ -1,0 +1,68 @@
+@import '@styles/global.scss';
+
+.EmployeesHeader {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 15px;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.EmployeesOptionals {
+  display: inline-flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 15px;
+}
+
+.EmployeesSearchAndAdd {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+}
+
+.filterContainer {
+  display: flex;
+  justify-content: start;
+  gap: 12px;
+  flex-wrap: wrap;
+  transition: $transition;
+
+  & > div {
+    width: 250px;
+    margin: 0;
+  }
+}
+
+.submitBtn {
+  margin-top: 20px;
+}
+
+.dropdownList {
+  max-height: 300px;
+
+  display: flex;
+  flex-direction: column;
+  gap: 7px;
+
+  overflow-y: auto;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color3;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $transparent;
+  }
+}

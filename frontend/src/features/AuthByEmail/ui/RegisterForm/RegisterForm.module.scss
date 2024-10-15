@@ -1,0 +1,23 @@
+@import '@styles/global.scss';
+@import '@styles/mixins.scss';
+
+.RegisterForm {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+
+  max-width: 420px;
+  max-height: 420px;
+  padding: 20px;
+
+  @include shadow();
+  
+  h2 {
+    @include font(24px);
+  }
+  p {
+    @include font(16px);
+
+    color: $color4;
+  }
+}

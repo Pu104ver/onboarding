@@ -1,0 +1,26 @@
+@import './reset.scss';
+@import './global.scss';
+
+a {
+  color: $color4;
+}
+
+.flex {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+h2 {
+  font-size: 36px;
+}
+
+h3 {
+  font-size: 24px;
+}
+
+@media screen and (width <= 1024px) {
+  .flex {
+    justify-content: center;
+  }
+}

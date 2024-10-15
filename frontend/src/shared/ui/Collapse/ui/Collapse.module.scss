@@ -1,0 +1,86 @@
+@import '@styles/global.scss';
+
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  flex-wrap: wrap;
+
+  width: auto;
+  height: auto;
+  margin-top: 15px;
+
+  overflow-x: auto;
+
+  &::-webkit-scrollbar {
+    width: 3px;
+    height: 3px;
+  }
+
+  &::-webkit-scrollbar-thumb {
+    background: $color3;
+    border-radius: 20px;
+  }
+
+  &::-webkit-scrollbar-track {
+    background: $transparent;
+  }
+}
+
+.btn {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+  align-items: center;
+
+  width: auto;
+  margin: 0 20px;
+  padding: 0;
+
+  background-color: transparent;
+  border: none;
+  outline: none;
+}
+
+.revert {
+  flex-direction: row-reverse;
+  justify-content: left;
+  padding: 10px 15px;
+  gap: 0;
+}
+
+.icon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 15px;
+  height: 15px;
+  margin-left: 16px;
+
+  text-align: center;
+
+  transition: $transition;
+}
+
+.collapsedIcon {
+  transform: rotate(90deg);
+}
+
+.body {
+  height: auto;
+  padding: 10px 0;
+  opacity: 1;
+  max-width: 100%;
+  transition: $transition;
+}
+
+.hidden {
+  overflow: hidden;
+  height: 0;
+  padding-top: 0;
+  opacity: 0;
+
+  &.body {
+    padding: 0;
+  }
+}

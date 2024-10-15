@@ -1,0 +1,50 @@
+@import '@styles/global.scss';
+
+.datacards {
+  width: 100%;
+  display: grid;
+  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(330px, 1fr));
+}
+.isCurator {
+  grid-template-columns: repeat(auto-fill, minmax(40%, 1fr));
+}
+
+.datacard {
+  border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  gap: 40px;
+  padding: 20px 20px 40px;
+  background-color: $color2;
+
+  .blockInDataCard {
+    width: 100%;
+    display: flex;
+    align-items: start;
+    justify-content: space-between;
+  }
+
+  h4 {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 10px;
+  }
+}
+
+.blockWithTwoParams {
+  @extend .datacard;
+  padding: 30px 20px;
+  gap: 20px;
+  h4 {
+    width: 55%;
+    min-width: 55%;
+  }
+  div {
+    width: 45%;
+    min-width: 45%;
+  }
+}

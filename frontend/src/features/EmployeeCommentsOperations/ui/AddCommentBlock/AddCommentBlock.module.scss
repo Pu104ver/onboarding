@@ -1,0 +1,17 @@
+@import '@styles/global.scss';
+.AddCommentBlock {
+  background-color: $color2;
+  display: inline-block;
+  border-radius: 6px;
+  padding: 15px;
+  .tools {
+    margin-top: 15px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+}
+
+.xIcon {
+  cursor: pointer;
+}

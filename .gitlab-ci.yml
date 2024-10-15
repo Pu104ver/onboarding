@@ -1,0 +1,91 @@
+stages:
+  - build
+  - deploy
+
+
+variables:
+  CONTAINER_TAG: $CI_PIPELINE_IID
+  DESTINATION: ${CI_REGISTRY_YC}/${CI_PROJECT_NAME}/${CI_COMMIT_BRANCH}
+
+.stage-image:
+  image:
+    name: gcr.io/kaniko-project/executor:debug
+    entrypoint: [ "" ]
+  script:
+    - mkdir -p /kaniko/.docker
+    - echo "{\"auths\":{\"${CI_REGISTRY_YC}\":{\"auth\":\"$(echo -n "json_key:${CI_REGISTRY_KEY}" | base64 | tr -d '\n' )\"}}}" > /kaniko/.docker/config.json
+    - >-
+      /kaniko/executor
+      --build-arg "REGISTRY=${CI_REGISTRY_YC}/${CI_PROJECT_PATH}"
+      --build-arg "FQDN=${FQDN}"
+      --build-arg "REACT_APP_DEBUG=${REACT_APP_DEBUG}"
+      --snapshot-mode=redo
+      --context "dir://${CI_PROJECT_DIR}/${COMPONENT}"
+      --dockerfile "${CI_PROJECT_DIR}/${COMPONENT}/Dockerfile"
+      --destination "${DESTINATION}/${COMPONENT}:${CONTAINER_TAG}"
+      --destination "${DESTINATION}/${COMPONENT}:latest"
+
+
+.stage-deploy:
+  image: cr.yandex/mirror/library/docker:latest
+  variables:
+    DOCKER_HOST: ""
+  script:
+    - cd deploy
+    - echo "${CI_REGISTRY_KEY}" | docker login --username json_key --password-stdin ${CI_REGISTRY_YC}
+    - export $(grep -vE "^(#.*|\s*)$" ${docker_env})
+    - docker context create swarm --docker "host=tcp://${STAND_IP}:2376,ca=${CA_CERT},cert=${C_CERT},key=${C_KEY}"
+    - >- 
+      docker --context swarm run --rm --env-file ${docker_env} ${DESTINATION}/backend:${CONTAINER_TAG} 
+      bash -c "python manage.py migrate"
+    - >-
+      FRONTEND_IMAGE=${DESTINATION}/frontend:${CONTAINER_TAG} BACKEND_IMAGE=${DESTINATION}/backend:${CONTAINER_TAG} 
+      docker --context swarm stack deploy -c docker-compose.yaml ${CI_ENVIRONMENT_NAME} --with-registry-auth
+
+
+
+build-backend:
+  stage: build
+  extends: .stage-image
+  variables:
+    COMPONENT: backend
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+
+build-frontend:
+  stage: build
+  extends: .stage-image
+  variables:
+    COMPONENT: frontend
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+      variables:
+        REACT_APP_DEBUG: "production"
+        FQDN: "onboarding.billed.pro"
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+      variables:
+        REACT_APP_DEBUG: "debug"
+        FQDN: "onboarding-dev.billed.pro"
+
+deploy-to-prod:
+  stage: deploy
+  extends: .stage-deploy
+  environment:
+    production
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "main"'
+      variables:
+        FQDN: "onboarding.billed.pro"
+    - when: never
+
+deploy-to-develop:
+  stage: deploy
+  extends: .stage-deploy
+  environment:
+    develop
+  rules:
+    - if: '$CI_COMMIT_BRANCH == "develop"'
+      variables:
+        FQDN: "onboarding-dev.billed.pro"
+    - when: never

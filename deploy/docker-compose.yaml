@@ -1,0 +1,107 @@
+version: '3.8'
+
+x-common-env: &all-env
+  POSTGRES_DB: ${POSTGRES_DB}
+  POSTGRES_USER: ${POSTGRES_USER}
+  POSTGRES_PASSWORD: ${POSTGRES_PASSWORD}
+  POSTGRES_HOST: ${POSTGRES_HOST}
+  POSTGRES_PORT: ${POSTGRES_PORT}
+  BOT_TOKEN: ${BOT_TOKEN}
+  CELERY_BROKER_URL: ${CELERY_BROKER_URL}
+  CELERY_RESULT_BACKEND: ${CELERY_RESULT_BACKEND}
+  REDIS_URL: ${REDIS_URL}
+  
+  DEBUG: ${DEBUG}
+  
+  SECRET_KEY: ${SECRET_KEY}
+  ALLOWED_HOSTS: ${ALLOWED_HOSTS}
+
+
+services:
+  backend:
+    image: ${BACKEND_IMAGE}
+    environment: *all-env
+    restart: always
+    expose:
+      - 8000
+    command: bash -c "daphne -b 0.0.0.0 -p 8000 --access-log - --proxy-headers onboarding.asgi:application"
+    depends_on:
+      - redis
+    volumes:
+      - django_static_volume:/usr/src/app/staticfiles
+      - django_media_volume:/usr/src/app/media
+  
+  celeryw:
+    image: ${BACKEND_IMAGE}
+    environment: *all-env
+    restart: always
+    depends_on:
+      - redis
+    command: bash -c "celery -A onboarding worker --loglevel=info"
+
+  celeryb:
+    image: ${BACKEND_IMAGE}
+    environment: *all-env
+    restart: always
+    depends_on:
+      - redis
+    command: bash -c "celery -A onboarding beat --loglevel=info"
+
+  bot:
+    image: ${BACKEND_IMAGE}
+    environment: *all-env
+    command: bash -c "python manage.py start_bot"
+    restart: always
+
+  redis:
+    image: cr.yandex/mirror/library/redis
+    volumes:
+      - redis:/data
+
+  frontend:
+    image: ${FRONTEND_IMAGE}
+    restart: always
+    command: npm run dev -- --host 0.0.0.0
+    depends_on:
+      - backend
+
+  nginx:
+    image: nginx:latest
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      FQDN: "${FQDN}"
+      CI_ENVIRONMENT_NAME: "${CI_ENVIRONMENT_NAME}"
+    configs:
+      - source: nginx
+        target: /etc/nginx/templates/default.conf.template
+      - source: proxy-nginx
+        target: /etc/nginx/conf/api-nginx-proxy-headers.conf
+    volumes:
+      - django_static_volume:/usr/src/app/staticfiles
+      - django_media_volume:/usr/src/app/media
+      - certbot_www:/var/www/certbot/:ro
+      - certbot_conf:/etc/nginx/ssl/:ro
+
+volumes:
+  django_static_volume:
+  django_media_volume:
+  redis:
+  certbot_www:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/admin/certbot/www/
+  certbot_conf:
+    driver: local
+    driver_opts:
+      o: bind
+      type: none
+      device: /home/admin/certbot/conf/
+configs:
+  nginx:
+    file: nginx.conf
+  proxy-nginx:
+    file: api-nginx-proxy-headers.conf

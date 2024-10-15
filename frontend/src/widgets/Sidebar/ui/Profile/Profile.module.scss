@@ -1,0 +1,41 @@
+@import '@styles/global.scss';
+@import '@styles/mixins.scss';
+
+.wrapper {
+    @include border($color9);
+
+    margin: 32px 16px;
+    padding: 16px;
+    border-radius: 20px;
+}
+
+.profileImgWrapper {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 50px;
+    height: 50px;
+    margin-right: auto;
+
+    object-fit: cover;
+    background-color:  $color1;
+    border-radius: 50%;
+}
+
+.personalDataWrapper {
+    width: 100%;
+    margin-top: 16px;
+}
+
+.name {
+    @include font(16px, $black, 400);
+    color: $color4; 
+}
+
+.desc {
+    @include font(14px);
+
+    margin-top: 4px;
+    color: $color10;
+}
